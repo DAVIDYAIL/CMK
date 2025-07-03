@@ -39,15 +39,17 @@ st.markdown("""
     }
     .stButton>button {
         background-color: #0DA7EE;
-        color: white;
+        color: white !important;
         border-radius: 8px;
         padding: 0.5em 2em;
         font-size: 1.2em;
         font-weight: bold;
         border: none;
+        transition: background 0.2s, color 0.2s;
     }
-    .stButton>button:hover {
+    .stButton>button:hover, .stButton>button:active, .stButton>button:focus {
         background-color: #0688E2;
+        color: white !important;
     }
     /* Caja de resultados moderna y amplia */
     .resultados-box {
