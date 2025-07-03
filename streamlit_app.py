@@ -127,7 +127,6 @@ st.image("Profar.png", width=180)
 
 # Título
 st.markdown("<div class='titulo-app'>Simulador Dosis Genotropin</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitulo'>Calcula la dosificación y cobertura de tratamiento para los dispositivos Genotropin.</div>", unsafe_allow_html=True)
 
 # Datos de conversión
 pen_53_clicks = list(range(1, 21))
@@ -167,7 +166,7 @@ if 'dosis_ui' not in st.session_state:
 col1, col2 = st.columns(2)
 with col1:
     disabled_mg = st.session_state['dosis_ui'] != 0
-    dosis_mg = st.number_input("Dosis diaria (mg)", 0.0, max(pen_12_mg), 0.0, 0.1, format="%.1f", key="dosis_mg", disabled=disabled_mg)
+    dosis_mg = st.number_input("Dosis diaria (mg)", 0.0, 4.1, 0.0, 0.1, format="%.1f", key="dosis_mg", disabled=disabled_mg)
 with col2:
     disabled_ui = st.session_state['dosis_mg'] != 0
     dosis_ui = st.number_input("Dosis diaria (UI)", 0.0, max(pen_12_ui), 0.0, 0.1, format="%.1f", key="dosis_ui", disabled=disabled_ui)
