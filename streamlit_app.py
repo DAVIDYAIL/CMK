@@ -51,14 +51,14 @@ st.markdown("""
     }
     /* Caja de resultados moderna y amplia */
     .resultados-box {
-        background: rgba(255,255,255,0.97);
+        background: #eaf6fd;
         border-radius: 22px;
         box-shadow: 0 4px 32px rgba(13,167,238,0.13);
         padding: 2.2em 2em 1.5em 2em;
         margin-top: 1.5em;
         margin-bottom: 2em;
-        width: 90vw;
-        max-width: 950px;
+        width: 98vw;
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
         transition: box-shadow 0.2s;
@@ -71,9 +71,11 @@ st.markdown("""
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        background: transparent;
+        background: #f7fbfd;
         font-size: 1.13em;
         margin-bottom: 0.5em;
+        border-radius: 12px;
+        overflow: hidden;
     }
     .resultados-table th, .resultados-table td {
         padding: 0.9em 0.5em;
