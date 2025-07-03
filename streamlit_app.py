@@ -49,29 +49,34 @@ st.markdown("""
     .stButton>button:hover {
         background-color: #0688E2;
     }
-    /* Caja de resultados moderna */
+    /* Caja de resultados moderna y amplia */
     .resultados-box {
-        background: rgba(255,255,255,0.92);
-        border-radius: 18px;
-        box-shadow: 0 4px 24px rgba(13,167,238,0.10);
-        padding: 2em 1em 1em 1em;
+        background: rgba(255,255,255,0.97);
+        border-radius: 22px;
+        box-shadow: 0 4px 32px rgba(13,167,238,0.13);
+        padding: 2.2em 2em 1.5em 2em;
         margin-top: 1.5em;
         margin-bottom: 2em;
-        max-width: 600px;
+        width: 90vw;
+        max-width: 950px;
         margin-left: auto;
         margin-right: auto;
+        transition: box-shadow 0.2s;
     }
-    /* Tabla moderna y responsive */
+    .resultados-box:hover {
+        box-shadow: 0 8px 40px rgba(13,167,238,0.18);
+    }
+    /* Tabla moderna y responsive con nueva paleta */
     .resultados-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
         background: transparent;
-        font-size: 1.1em;
+        font-size: 1.13em;
         margin-bottom: 0.5em;
     }
     .resultados-table th, .resultados-table td {
-        padding: 0.7em 0.5em;
+        padding: 0.9em 0.5em;
         text-align: center;
         border-bottom: 1px solid #e0e7ef;
     }
@@ -79,28 +84,37 @@ st.markdown("""
         background: #eaf6fd;
         color: #0688E2;
         font-weight: bold;
-        font-size: 1.08em;
+        font-size: 1.13em;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
     .resultados-table tr:last-child td {
         border-bottom: none;
     }
     .resultados-table tr:nth-child(even) td {
-        background: #f7fbfd;
+        background: #f4f8fb;
+    }
+    .resultados-table tr:nth-child(odd) td {
+        background: #ffffff;
     }
     .resultados-table td {
         color: #222;
-        font-size: 1.08em;
+        font-size: 1.13em;
+    }
+    .resultados-table td:first-child {
+        color: #0688E2;
+        font-weight: bold;
+        background: #eaf6fd;
+        text-align: left;
+        border-left: 2px solid #0DA7EE22;
     }
     .resultados-table .resaltado {
         color: #e74c3c;
         font-weight: bold;
-        font-size: 1.15em;
+        font-size: 1.18em;
     }
-    @media (max-width: 600px) {
-        .titulo-app { font-size: 1.5em; }
-        .subtitulo { font-size: 1em; }
-        .titulo-pen { font-size: 1.1em; }
-        .resultados-box { padding: 1em 0.2em; }
+    @media (max-width: 900px) {
+        .resultados-box { width: 99vw; padding: 1em 0.2em; }
         .resultados-table th, .resultados-table td { font-size: 0.98em; padding: 0.5em 0.2em; }
     }
     </style>
