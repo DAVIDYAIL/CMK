@@ -11,12 +11,21 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+    body {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
     .stApp {
         background-image: url('""" + bg_img + """');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        padding-top: 0.5em !important; /* Reduce espacio superior */
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    .block-container {
+        padding-top: 0.2em !important;
+        margin-top: 0 !important;
     }
     .titulo-app {
         color: #0DA7EE;
