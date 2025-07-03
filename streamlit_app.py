@@ -128,7 +128,7 @@ st.markdown("""
 st.image("Profar.png", width=180)
 
 # Título
-st.markdown("<div class='titulo-app'>Simulador Dosis Genotropin</div>", unsafe_allow_html=True)
+st.markdown("<div class='titulo-app'>Simulador De Dosis Genotropin</div>", unsafe_allow_html=True)
 
 # Datos de conversión
 pen_53_clicks = list(range(1, 21))
