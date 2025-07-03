@@ -1,7 +1,6 @@
 import streamlit as st
 import math
 import pandas as pd
-from st_aggrid import AgGrid, GridOptionsBuilder
 
 # URL del fondo desde GitHub
 bg_img = "https://raw.githubusercontent.com/DAVIDYAIL/CMK/main/Fondo_Profar2.jpg"
