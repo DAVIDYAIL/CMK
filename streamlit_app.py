@@ -19,22 +19,23 @@ st.markdown("""
     }
     .titulo-app {
         color: #0DA7EE;
-        font-size: 2.5em;
+        font-size: 2em;
         font-weight: bold;
-        margin-bottom: 0.2em;
+        margin-bottom: 0.1em;
+        margin-top: 0.2em;
         text-shadow: 1px 1px 6px #fff, 0 0 2px #0DA7EE;
     }
     .subtitulo {
         color: #797C89;
-        font-size: 1.2em;
-        margin-bottom: 1em;
+        font-size: 1em;
+        margin-bottom: 0.5em;
         text-shadow: 1px 1px 6px #fff;
     }
     .titulo-pen {
         color: #0688E2;
         font-weight: bold;
-        font-size: 1.3em;
-        margin-bottom: 0.5em;
+        font-size: 1.1em;
+        margin-bottom: 0.3em;
         text-shadow: 1px 1px 6px #fff;
     }
     .stButton>button {
@@ -54,13 +55,13 @@ st.markdown("""
     /* Caja de resultados moderna y amplia */
     .resultados-box {
         background: #eaf6fd;
-        border-radius: 22px;
-        box-shadow: 0 4px 32px rgba(13,167,238,0.13);
-        padding: 2.2em 2em 1.5em 2em;
-        margin-top: 1.5em;
-        margin-bottom: 2em;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(13,167,238,0.10);
+        padding: 1.2em 1em 1em 1em;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
         width: 98vw;
-        max-width: 700px;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
         transition: box-shadow 0.2s;
@@ -74,13 +75,13 @@ st.markdown("""
         border-collapse: separate;
         border-spacing: 0;
         background: #f7fbfd;
-        font-size: 1.13em;
+        font-size: 0.98em;
         margin-bottom: 0.5em;
         border-radius: 12px;
         overflow: hidden;
     }
     .resultados-table th, .resultados-table td {
-        padding: 0.9em 0.5em;
+        padding: 0.6em 0.3em;
         text-align: center;
         border-bottom: 1px solid #e0e7ef;
     }
@@ -88,7 +89,7 @@ st.markdown("""
         background: #eaf6fd;
         color: #0688E2;
         font-weight: bold;
-        font-size: 1.13em;
+        font-size: 1em;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -103,7 +104,7 @@ st.markdown("""
     }
     .resultados-table td {
         color: #222;
-        font-size: 1.13em;
+        font-size: 0.98em;
     }
     .resultados-table td:first-child {
         color: #0688E2;
@@ -121,11 +122,20 @@ st.markdown("""
         .resultados-box { width: 99vw; padding: 1em 0.2em; }
         .resultados-table th, .resultados-table td { font-size: 0.98em; padding: 0.5em 0.2em; }
     }
+    /* Contraste para los inputs */
+    input[type="number"] {
+        background: #fff !important;
+        border: 2px solid #0DA7EE !important;
+        border-radius: 8px !important;
+        color: #222 !important;
+        font-size: 1em !important;
+        box-shadow: 0 1px 4px #0da7ee22;
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # Mostrar logo
-st.image("Profar.png", width=180)
+st.image("Profar.png", width=140)
 
 # Título
 st.markdown("<div class='titulo-app'>Simulador De Dosis Genotropin</div>", unsafe_allow_html=True)
