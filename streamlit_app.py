@@ -19,32 +19,89 @@ st.markdown("""
     }
     .titulo-app {
         color: #0DA7EE;
-        font-size: 2.2em;
+        font-size: 2.5em;
         font-weight: bold;
         margin-bottom: 0.2em;
+        text-shadow: 1px 1px 6px #fff, 0 0 2px #0DA7EE;
     }
     .subtitulo {
         color: #797C89;
-        font-size: 1.1em;
+        font-size: 1.2em;
         margin-bottom: 1em;
+        text-shadow: 1px 1px 6px #fff;
     }
     .titulo-pen {
         color: #0688E2;
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.3em;
         margin-bottom: 0.5em;
+        text-shadow: 1px 1px 6px #fff;
     }
     .stButton>button {
         background-color: #0DA7EE;
         color: white;
         border-radius: 8px;
         padding: 0.5em 2em;
-        font-size: 1.1em;
+        font-size: 1.2em;
         font-weight: bold;
         border: none;
     }
     .stButton>button:hover {
         background-color: #0688E2;
+    }
+    /* Caja de resultados moderna */
+    .resultados-box {
+        background: rgba(255,255,255,0.92);
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(13,167,238,0.10);
+        padding: 2em 1em 1em 1em;
+        margin-top: 1.5em;
+        margin-bottom: 2em;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* Tabla moderna y responsive */
+    .resultados-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: transparent;
+        font-size: 1.1em;
+        margin-bottom: 0.5em;
+    }
+    .resultados-table th, .resultados-table td {
+        padding: 0.7em 0.5em;
+        text-align: center;
+        border-bottom: 1px solid #e0e7ef;
+    }
+    .resultados-table th {
+        background: #eaf6fd;
+        color: #0688E2;
+        font-weight: bold;
+        font-size: 1.08em;
+    }
+    .resultados-table tr:last-child td {
+        border-bottom: none;
+    }
+    .resultados-table tr:nth-child(even) td {
+        background: #f7fbfd;
+    }
+    .resultados-table td {
+        color: #222;
+        font-size: 1.08em;
+    }
+    .resultados-table .resaltado {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 1.15em;
+    }
+    @media (max-width: 600px) {
+        .titulo-app { font-size: 1.5em; }
+        .subtitulo { font-size: 1em; }
+        .titulo-pen { font-size: 1.1em; }
+        .resultados-box { padding: 1em 0.2em; }
+        .resultados-table th, .resultados-table td { font-size: 0.98em; padding: 0.5em 0.2em; }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -134,21 +191,48 @@ else:
 # Mostrar resultados
 if (dosis_mg > 0 and dosis_ui == 0) or (dosis_ui > 0 and dosis_mg == 0):
     def format_clicks(c):
-        return f"<span style='color:red;font-weight:bold'>{c:.2f}</span>" if abs(c - round(c)) > 1e-6 else str(int(round(c)))
+        return f"<span class='resaltado'>{c:.2f}</span>" if abs(c - round(c)) > 1e-6 else str(int(round(c)))
 
     st.markdown("<div class='titulo-pen'>Resultados de dosificación</div>", unsafe_allow_html=True)
-    df = pd.DataFrame({
-        'Pen 5,3 mg o 16 UI': [dosis_53, format_clicks(clicks_53_real), cartuchos_53, dias_53],
-        'Pen 12 mg o 36 UI': [dosis_12, format_clicks(clicks_12_real), cartuchos_12, dias_12]
-    }, index=[
-        'Dosis diaria',
-        'Click Pen',
-        'Cartuchos para 30 días de tto',
-        'Días Totales Cubiertos por despacho'
-    ])
-    st.write(df.to_html(escape=False), unsafe_allow_html=True)
-
+    # Tabla moderna en HTML
+    tabla_html = f'''
+    <div class="resultados-box">
+    <table class="resultados-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Pen 5,3 mg o 16 UI</th>
+                <th>Pen 12 mg o 36 UI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Dosis diaria</b></td>
+                <td>{dosis_53}</td>
+                <td>{dosis_12}</td>
+            </tr>
+            <tr>
+                <td><b>Click Pen</b></td>
+                <td>{format_clicks(clicks_53_real)}</td>
+                <td>{format_clicks(clicks_12_real)}</td>
+            </tr>
+            <tr>
+                <td><b>Cartuchos para 30 días de tto</b></td>
+                <td>{cartuchos_53}</td>
+                <td>{cartuchos_12}</td>
+            </tr>
+            <tr>
+                <td><b>Días Totales Cubiertos por despacho</b></td>
+                <td>{dias_53}</td>
+                <td>{dias_12}</td>
+            </tr>
+        </tbody>
+    </table>
+    '''
+    # Mensajes de advertencia
     if abs(clicks_53_real - round(clicks_53_real)) > 1e-6:
-        st.markdown("<span style='color:red'>No es posible dosificar esta dosis exacta con el Pen 5,3 mg o 16 UI.</span>", unsafe_allow_html=True)
+        tabla_html += "<div style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 5,3 mg o 16 UI.</div>"
     if abs(clicks_12_real - round(clicks_12_real)) > 1e-6:
-        st.markdown("<span style='color:red'>No es posible dosificar esta dosis exacta con el Pen 12 mg o 36 UI.</span>", unsafe_allow_html=True)
+        tabla_html += "<div style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 12 mg o 36 UI.</div>"
+    tabla_html += "</div>"
+    st.markdown(tabla_html, unsafe_allow_html=True)
