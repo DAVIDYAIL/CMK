@@ -62,6 +62,14 @@ st.markdown("""
         background-color: #0688E2;
         color: white !important;
     }
+    .stButton>button:active {
+        animation: pulse 0.2s;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1);}
+        50% { transform: scale(1.08);}
+        100% { transform: scale(1);}
+    }
     /* Caja de resultados moderna y amplia */
     .resultados-box {
         background: #eaf6fd;
