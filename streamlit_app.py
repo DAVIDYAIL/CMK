@@ -16,13 +16,14 @@ st.markdown("""
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        padding-top: 0.5em !important; /* Reduce espacio superior */
     }
     .titulo-app {
         color: #0DA7EE;
         font-size: 2em;
         font-weight: bold;
         margin-bottom: 0.1em;
-        margin-top: 0.2em;
+        margin-top: 0em; /* Reduce espacio arriba del título */
         text-shadow: 1px 1px 6px #fff, 0 0 2px #0DA7EE;
     }
     .subtitulo {
@@ -56,15 +57,16 @@ st.markdown("""
     .resultados-box {
         background: #eaf6fd;
         border-radius: 18px;
-        box-shadow: 0 2px 16px rgba(13,167,238,0.10);
+        box-shadow: 0 6px 32px rgba(13,167,238,0.18); /* Más sombra para destacar */
         padding: 1.2em 1em 1em 1em;
         margin-top: 0.5em;
         margin-bottom: 1em;
         width: 98vw;
-        max-width: 600px;
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
         transition: box-shadow 0.2s;
+        border: 2.5px solid #0DA7EE33; /* Borde suave para destacar */
     }
     .resultados-box:hover {
         box-shadow: 0 8px 40px rgba(13,167,238,0.18);
