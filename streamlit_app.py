@@ -191,42 +191,49 @@ else:
 
 # Mostrar resultados
 if (dosis_mg > 0 and dosis_ui == 0) or (dosis_ui > 0 and dosis_mg == 0):
-    def format_clicks_ag(c):
-        return c if abs(c - round(c)) < 1e-6 else f"⚠️ {c:.2f}"
-
-    data = {
-        'Concepto': [
-            'Dosis diaria',
-            'Click Pen',
-            'Cartuchos para 30 días de tto',
-            'Días Totales Cubiertos por despacho'
-        ],
-        'Pen 5,3 mg o 16 UI': [
-            dosis_53,
-            format_clicks_ag(clicks_53_real),
-            cartuchos_53,
-            dias_53
-        ],
-        'Pen 12 mg o 36 UI': [
-            dosis_12,
-            format_clicks_ag(clicks_12_real),
-            cartuchos_12,
-            dias_12
-        ]
-    }
-    df_ag = pd.DataFrame(data)
+    def format_clicks(c):
+        return f"<span class='resaltado'>{c:.2f}</span>" if abs(c - round(c)) > 1e-6 else str(int(round(c)))
 
     st.markdown("<div class='titulo-pen'>Resultados de dosificación</div>", unsafe_allow_html=True)
-    gb = GridOptionsBuilder.from_dataframe(df_ag)
-    gb.configure_default_column(resizable=True, filterable=False, sortable=False, cellStyle={'font-size': '1.1em'})
-    gb.configure_column('Concepto', pinned='left', cellStyle={'font-weight': 'bold', 'background-color': '#eaf6fd'})
-    gb.configure_column('Pen 5,3 mg o 16 UI', cellStyle={'text-align': 'center'})
-    gb.configure_column('Pen 12 mg o 36 UI', cellStyle={'text-align': 'center'})
-    gridOptions = gb.build()
-    AgGrid(df_ag, gridOptions=gridOptions, fit_columns_on_grid_load=True, theme='material', height=270)
-
+    # Tabla moderna en HTML
+    tabla_html = f'''
+    <div class="resultados-box">
+    <table class="resultados-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Pen 5,3 mg o 16 UI</th>
+                <th>Pen 12 mg o 36 UI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Dosis diaria</b></td>
+                <td>{dosis_53}</td>
+                <td>{dosis_12}</td>
+            </tr>
+            <tr>
+                <td><b>Click Pen</b></td>
+                <td>{format_clicks(clicks_53_real)}</td>
+                <td>{format_clicks(clicks_12_real)}</td>
+            </tr>
+            <tr>
+                <td><b>Cartuchos para 30 días de tto</b></td>
+                <td>{cartuchos_53}</td>
+                <td>{cartuchos_12}</td>
+            </tr>
+            <tr>
+                <td><b>Días Totales Cubiertos por despacho</b></td>
+                <td>{dias_53}</td>
+                <td>{dias_12}</td>
+            </tr>
+        </tbody>
+    </table>
+    '''
     # Mensajes de advertencia
     if abs(clicks_53_real - round(clicks_53_real)) > 1e-6:
-        st.markdown("<span style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 5,3 mg o 16 UI.</span>", unsafe_allow_html=True)
+        tabla_html += "<div style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 5,3 mg o 16 UI.</div>"
     if abs(clicks_12_real - round(clicks_12_real)) > 1e-6:
-        st.markdown("<span style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 12 mg o 36 UI.</span>", unsafe_allow_html=True)
+        tabla_html += "<div style='color:#e74c3c;font-weight:bold;margin-top:0.5em'>No es posible dosificar esta dosis exacta con el Pen 12 mg o 36 UI.</div>"
+    tabla_html += "</div>"
+    st.markdown(tabla_html, unsafe_allow_html=True)
